@@ -19,7 +19,6 @@ class App extends Component {
                 this.setState({
                     loading: false,
                     character: data,
-                    totalCharacters: 83
                 })
             })
     }
