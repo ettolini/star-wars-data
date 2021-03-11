@@ -1,4 +1,5 @@
 import React, {Component} from "react"
+import CharacterSelector from "./CharacterSelector"
 
 class App extends Component {
     constructor() {
@@ -47,31 +48,12 @@ class App extends Component {
     }
 
     render() {
-        const optionComponents = this.state.characters.map((character, index) => (
-            <option
-                key={index}
-                value={index}
-            >
-                {character.name}
-            </option>
-        ))
-
         return (
             <div>
                 <div class="header">
                     <h1>Star Wars Character Data</h1>
                 </div>
-                <select onChange={this.handleChange}>
-                    <option value="">
-                        -- Choose a character --
-                    </option>
-                    {optionComponents}
-                </select>
-                {
-                    this.state.text === "LOADING..." &&
-                        <img src="https://thumbs.gfycat.com/InnocentPleasedAmericangoldfinch-max-1mb.gif" alt="this slowpoke moves"  width="250" alt="404 image"/>
-                }
-                <p>{this.state.text}</p>
+                <CharacterSelector handleChange={this.handleChange} item={this.state}/>
             </div>
         )
     }
