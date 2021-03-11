@@ -96,7 +96,7 @@ class App extends Component {
                         onChange={this.handleChange}
                 >
                     <option value="">
-                        -- Choose a partner --
+                        -- Choose a character --
                     </option>
                     {optionComponents}
                 
