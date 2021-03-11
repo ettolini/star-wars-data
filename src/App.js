@@ -5,16 +5,32 @@ class App extends Component {
     constructor() {
         super()
         this.state = {
+            url: {},
             characters: [],
+            movies: [],
             text: ""
         }
+        this.getPeople = this.getPeople.bind(this)
+        // this.getFilms = this.getFilms.bind(this)
         this.handleChange = this.handleChange.bind(this)
     }
 
     componentDidMount() {
         this.setState({text: "LOADING..."})
+        
+        fetch("https://swapi.dev/api/")
+        .then(response => response.json())
+        .then(data => {
+            this.setState({ url: data })
+            this.getPeople(this.state.url.people)
+        })
+        
+    }
+    
+    getPeople(url) {
+        this.setState({text: "LOADING..."})
 
-        fetch("https://swapi.dev/api/people/")
+        fetch(url)
             .then(response => response.json())
             .then(data => {
                 this.setState({
@@ -23,6 +39,10 @@ class App extends Component {
                 })
             })
     }
+
+    // getFilms(url) {
+
+    // }
 
     handleChange(e) {
         try {
