@@ -8,18 +8,22 @@ class App extends Component {
             character: {},
             movies: []
         }
+
         this.getMovie = this.getMovie.bind(this)
         this.newCharacter = this.newCharacter.bind(this)
         this.handleChange = this.handleChange.bind(this)
     }
     
     getMovie(url) {
-        this.setState({loading: true})
+        this.setState({
+            loading: true,
+            movies: []
+        })
+
         fetch(url)
             .then(response => response.json())
             .then(data => {
                 this.setState(prevState => {
-                    console.log(prevState.movies)
                     prevState.movies.push(data.title)
 
                     return {
@@ -31,13 +35,15 @@ class App extends Component {
 
     newCharacter(n) {
         this.setState({loading: true})
+
         fetch("https://swapi.dev/api/people/" + n)
             .then(response => response.json())
             .then(data => {
                 this.setState({
                     loading: false,
-                    character: data,
+                    character: data
                 })
+
                 const films = this.state.character.films
                 console.log(films)
                 films.forEach(film => {
@@ -73,11 +79,7 @@ class App extends Component {
         ));
 
         const listComponents = movies.map((movie, index) => (
-            <li
-                key={index}
-            >
-                {movie}
-            </li>
+            <li key={index}> {movie} </li>
         ));
 
         if (!this.state.loading)
@@ -86,13 +88,9 @@ class App extends Component {
 
         return (
             <div>
-                <h1>Star Wars Date Simulator</h1>
-                
-                <p>{text}</p>
-
-                <ul>
-                    {listComponents}
-                </ul>
+                <div class="header">
+                    <h1>Star Wars Character Data</h1>
+                </div>
                 
                 <select
                         onChange={this.handleChange}
@@ -103,6 +101,13 @@ class App extends Component {
                     {optionComponents}
                 
                 </select>
+
+                <p>{text}</p>
+
+                <ul>
+                    {listComponents}
+                </ul>
+                
             </div>
         )
     }

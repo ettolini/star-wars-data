@@ -1,4 +1,38 @@
 body {
+  margin: 0;
+}
+
+h1,
+select,
+p,
+ul {
+  align-self: center;
+}
+
+select {
+  font-size: 1.3rem;
+  margin: 1rem;
+}
+
+p {
+  font-size: 1.3rem;
+  margin-bottom: 0;
+}
+
+li {
+  margin: 0.5rem;
+  font-size: 1.2rem;
+}
+
+div {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+}
+
+.header {
+  background-color: #111;
+  color: #ddf;
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
 }
