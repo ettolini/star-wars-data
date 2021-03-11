@@ -4,8 +4,7 @@ body {
 
 h1,
 select,
-p,
-ul {
+p {
   align-self: center;
 }
 
@@ -16,12 +15,7 @@ select {
 
 p {
   font-size: 1.3rem;
-  margin-bottom: 0;
-}
-
-li {
-  margin: 0.5rem;
-  font-size: 1.2rem;
+  margin: 1rem 3rem;
 }
 
 div {

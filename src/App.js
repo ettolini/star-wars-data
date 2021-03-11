@@ -4,110 +4,62 @@ class App extends Component {
     constructor() {
         super()
         this.state = {
-            loading: false,
-            character: {},
-            movies: []
+            characters: [],
+            text: ""
         }
-
-        this.getMovie = this.getMovie.bind(this)
-        this.newCharacter = this.newCharacter.bind(this)
         this.handleChange = this.handleChange.bind(this)
     }
-    
-    getMovie(url) {
-        this.setState({
-            loading: true,
-            movies: []
-        })
 
-        fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                this.setState(prevState => {
-                    prevState.movies.push(data.title)
+    componentDidMount() {
+        this.setState({text: "loading..."})
 
-                    return {
-                        loading: false,
-                    }
-                })
-            })
-    }
-
-    newCharacter(n) {
-        this.setState({loading: true})
-
-        fetch("https://swapi.dev/api/people/" + n)
+        fetch("https://swapi.dev/api/people/")
             .then(response => response.json())
             .then(data => {
                 this.setState({
-                    loading: false,
-                    character: data
-                })
-
-                const films = this.state.character.films
-                console.log(films)
-                films.forEach(film => {
-                    this.getMovie(film)
+                    text: "",
+                    characters: data.results
                 })
             })
     }
-    
+
     handleChange(e) {
-        this.newCharacter(e.target.value)
+        const character = this.state.characters[e.target.value]
+        const show = `Height: ${character.height}.
+Mass: ${character.mass}.
+Hair color: ${character.hair_color}. 
+Skin color: ${character.skin_color}.
+Eye color: ${character.eye_color}.
+Birth year: ${character.birth_year}.
+Gender: ${character.gender}.`
+
+        this.setState({
+            text: show
+        })
     }
-    
+
     render() {
-        const { name, gender, height, mass } = this.state.character
-        const { movies } = this.state
-
-        let text = "loading..."
-
-        const characters = ['Luke Skywaker',
-                            'C3-PO',
-                            'R2-D2',
-                            'Darth Vader',
-                            'Leia Organa'
-                            ]
-
-        const optionComponents = characters.map((character, index) => (
+        const optionComponents = this.state.characters.map((character, index) => (
             <option
-              key={index}
-              value={`${(index + 1).toString()}/`}
+                key={index}
+                value={index}
             >
-              {character}
+                {character.name}
             </option>
-        ));
-
-        const listComponents = movies.map((movie, index) => (
-            <li key={index}> {movie} </li>
-        ));
-
-        if (!this.state.loading)
-            text = name != undefined ?
-                `Gender: ${gender} - Height: ${height} - Mass: ${mass}` : ""
+        ))
 
         return (
             <div>
                 <div class="header">
                     <h1>Star Wars Character Data</h1>
                 </div>
-                
-                <select
-                        onChange={this.handleChange}
-                >
+                <select onChange={this.handleChange}>
                     <option value="">
                         -- Choose a character --
                     </option>
                     {optionComponents}
-                
                 </select>
-
-                <p>{text}</p>
-
-                <ul>
-                    {listComponents}
-                </ul>
-                
+                <p>{this.state.text}</p>
             </div>
         )
     }
