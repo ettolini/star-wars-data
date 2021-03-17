@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+
+import Header from "./Header";
 import CharacterSelector from "./CharacterSelector";
 
 class App extends Component {
@@ -27,23 +29,33 @@ class App extends Component {
   }
 
   getPeople(url) {
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-        this.setState({ characters: data.results });
-        this.getFilms(this.state.url.films);
-      });
+    try {
+      fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+          this.setState({ characters: data.results });
+          this.getFilms(this.state.url.films);
+        });
+    } catch (error) {
+      console.log(
+        "An unexpected error has occurred when fetching character basic data."
+      );
+    }
   }
 
   getFilms(url) {
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-        this.setState({
-          movies: data.results,
-          text: "",
+    try {
+      fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+          this.setState({
+            movies: data.results,
+            text: "",
+          });
         });
-      });
+    } catch (error) {
+      console.log("An unexpected error has occurred when fetching movie data.");
+    }
   }
 
   handleChange(e) {
@@ -83,9 +95,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <div class="header">
-          <h1>Star Wars Character Data</h1>
-        </div>
+        <Header />
         <CharacterSelector handleChange={this.handleChange} item={this.state} />
       </div>
     );
