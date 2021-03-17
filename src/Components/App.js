@@ -58,13 +58,13 @@ class App extends Component {
     }
   }
 
-  handleChange(e) {
+  handleChange(event) {
     try {
-      const movies = this.state.movies;
-      const character = this.state.characters[e.target.value];
+      const { movies } = this.state;
+      const character = this.state.characters[event.target.value];
       const featuredMovies = character.films;
 
-      let show = `Height: ${character.height}.
+      let displayText = `Height: ${character.height}.
                         Mass: ${character.mass}.
                         Hair color: ${character.hair_color}. 
                         Skin color: ${character.skin_color}.
@@ -76,14 +76,14 @@ class App extends Component {
       for (let featured of featuredMovies) {
         for (let i = 1; i <= movies.length; i++) {
           if (featured[featured.length - 2] === i.toString()) {
-            show = show.concat(" ", `"${movies[i - 1].title}".`);
+            displayText = displayText.concat(" ", `"${movies[i - 1].title}".`);
             console.log(movies[i - 1].title);
           }
         }
       }
 
       this.setState({
-        text: show,
+        text: displayText,
       });
     } catch (error) {
       this.setState({
