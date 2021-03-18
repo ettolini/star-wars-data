@@ -1,4 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
+
+import TextLoading from "./TextLoading";
 
 function CharacterSelector(props) {
   const optionComponents = props.item.characters.map((character, index) => (
@@ -14,13 +16,7 @@ function CharacterSelector(props) {
         <option value="">-- Choose a character --</option>
         {optionComponents}
       </select>
-      {props.item.text === "LOADING..." && (
-        <img
-          src="https://thumbs.gfycat.com/InnocentPleasedAmericangoldfinch-max-1mb.gif"
-          alt="this slowpoke moves"
-          class="loadingGif"
-        />
-      )}
+      <TextLoading text={props.item.text} />
       <p>{props.item.text}</p>
     </div>
   );
