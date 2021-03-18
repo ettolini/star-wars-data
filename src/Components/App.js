@@ -64,6 +64,7 @@ class App extends Component {
       const character = this.state.characters[event.target.value];
       const featuredMovies = character.films;
 
+      // TODO: separate all text into a new list component
       let displayText = `Height: ${character.height}.
                         Mass: ${character.mass}.
                         Hair color: ${character.hair_color}. 
@@ -92,6 +93,7 @@ class App extends Component {
     }
   }
 
+  //   TODO: make sure everything is a different component
   render() {
     return (
       <div>
