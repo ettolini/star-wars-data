@@ -1,6 +1,7 @@
 import React from "react";
 
 import TextLoading from "./TextLoading";
+import TextInfo from "./TextInfo";
 
 function CharacterSelector(props) {
   const optionComponents = props.item.characters.map((character, index) => (
@@ -9,15 +10,17 @@ function CharacterSelector(props) {
     </option>
   ));
 
-  // TODO: separate loading text from display text
   return (
     <div>
       <select onChange={props.handleChange}>
         <option value="">-- Choose a character --</option>
         {optionComponents}
       </select>
-      <TextLoading text={props.item.text} />
-      <p>{props.item.text}</p>
+      {!Array.isArray(props.item.text) ? (
+        <TextLoading text={props.item.text} />
+      ) : (
+        <TextInfo text={props.item.text} />
+      )}
     </div>
   );
 }

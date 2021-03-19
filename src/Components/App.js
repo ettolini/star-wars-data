@@ -64,36 +64,28 @@ class App extends Component {
       const character = this.state.characters[event.target.value];
       const featuredMovies = character.films;
 
-      // TODO: separate all text into a new list component
-      let displayText = `Height: ${character.height}.
-                        Mass: ${character.mass}.
-                        Hair color: ${character.hair_color}. 
-                        Skin color: ${character.skin_color}.
-                        Eye color: ${character.eye_color}.
-                        Birth year: ${character.birth_year}.
-                        Gender: ${character.gender}.
-                        Featured movies:`;
+      const displayText = [
+        "Height: " + character.height,
+        "Mass: " + character.mass,
+        "Hair color: " + character.hair_color,
+        "Skin color: " + character.skin_color,
+        "Eye color: " + character.eye_color,
+        "Birth year: " + character.birth_year,
+        "Gender: " + character.gender,
+        "Featured movies: ",
+      ];
 
-      for (let featured of featuredMovies) {
-        for (let i = 1; i <= movies.length; i++) {
-          if (featured[featured.length - 2] === i.toString()) {
-            displayText = displayText.concat(" ", `"${movies[i - 1].title}".`);
-            console.log(movies[i - 1].title);
-          }
-        }
-      }
+      for (let featured of featuredMovies)
+        for (let i = 1; i <= movies.length; i++)
+          if (featured[featured.length - 2] === i.toString())
+            displayText.push('"' + movies[i - 1].title + '"');
 
-      this.setState({
-        text: displayText,
-      });
+      this.setState({ text: displayText });
     } catch (error) {
-      this.setState({
-        text: "",
-      });
+      this.setState({ text: "" });
     }
   }
 
-  //   TODO: make sure everything is a different component
   render() {
     return (
       <div>
