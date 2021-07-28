@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.js": "/starWarsCharacterData/static/js/main.6dd185b3.chunk.js",
+    "main.js.map": "/starWarsCharacterData/static/js/main.6dd185b3.chunk.js.map",
+    "runtime-main.js": "/starWarsCharacterData/static/js/runtime-main.277837ad.js",
+    "runtime-main.js.map": "/starWarsCharacterData/static/js/runtime-main.277837ad.js.map",
+    "static/js/2.e2b157a9.chunk.js": "/starWarsCharacterData/static/js/2.e2b157a9.chunk.js",
+    "static/js/2.e2b157a9.chunk.js.map": "/starWarsCharacterData/static/js/2.e2b157a9.chunk.js.map",
+    "index.html": "/starWarsCharacterData/index.html",
+    "static/js/2.e2b157a9.chunk.js.LICENSE.txt": "/starWarsCharacterData/static/js/2.e2b157a9.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.277837ad.js",
+    "static/js/2.e2b157a9.chunk.js",
+    "static/js/main.6dd185b3.chunk.js"
+  ]
+}
